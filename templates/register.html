@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <!-- Enlace al archivo CSS personalizado para el formulario de registro -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+</head>
+<body>
+
+    <!-- Contenedor principal del formulario de registro -->
+    <div class="container">
+
+        <!-- Sección del logo de la empresa o sistema -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/Logo-sst.png') }}" alt="Logo SST">
+        </div>
+
+        <!-- Tarjeta o caja blanca con el formulario de registro -->
+        <div class="form-container">
+            <!-- Bloque de mensajes flash -->
+            {% with mensajes = get_flashed_messages(with_categories=true) %}            
+            {% if mensajes %}
+                {% for categoria, mensaje in mensajes %}
+                <div class="alert alert-{{ 'danger' if categoria == 'danger' }}" style="font-weight: bold; margin-bottom: 10px;">
+                    {{ mensaje }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+
+            <h2>Registro de Usuario</h2>
+
+            <!-- Formulario para capturar datos del nuevo usuario -->
+            <form method="POST" id="registroForm">
+
+                <!-- Campo: Nombre completo -->
+                <label for="nombre_completo">Nombre completo:</label>
+                <input type="text" name="nombre_completo" id="nombre_completo" required>
+
+                <!-- Campo: Correo electrónico -->
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" id="correo" required>
+
+                <!-- Campo: Nombre de usuario -->
+                <label for="usuario">Nombre de usuario:</label>
+                <input type="text" name="usuario" id="usuario" required>
+
+                <!-- Campo: Contraseña -->
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" name="contraseña" id="contraseña" required>
+
+                <!-- Campo: Rol (select) -->
+                <label for="rol">Seleccione el rol:</label>
+                <select name="rol_id" id="rol" required>
+                    <option value="">-- Rol --</option>
+                    <!-- Opciones generadas dinámicamente desde la base de datos -->
+                    {% for rol in roles %}
+                        <option value="{{ rol.id }}">{{ rol.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Campo: Empresa (select) -->
+                <label for="empresa">Seleccione la empresa:</label>
+                <select name="nit_empresa" id="empresa" required>
+                    <option value="">-- Empresa --</option>
+                    <!-- Opciones generadas dinámicamente desde la base de datos -->
+                    {% for empresa in empresas %}
+                        <option value="{{ empresa.nit_empresa }}">{{ empresa.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Botón para enviar el formulario -->
+                <button type="submit">Registrarse</button>
+
+                <!-- Mensaje dinámico, por ejemplo: éxito o error -->
+                <p id="mensaje"></p>
+            </form>
+
+            <!-- Enlace hacia el login si el usuario ya está registrado -->
+            <p>¿Ya tienes una cuenta? <a href="{{ url_for('iniciar_sesion') }}">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+</body>
+</html>
+

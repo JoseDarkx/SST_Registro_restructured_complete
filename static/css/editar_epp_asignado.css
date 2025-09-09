@@ -1,0 +1,131 @@
+.sidebar a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background: #f9fafb;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(to bottom, #2a5298, #0dfd41);
+    color: white;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No se reduce de tamaño */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #504747;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== Main content ===== */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container {
+    max-width: 600px; /* Evita que se expanda demasiado */
+    width: 100%;
+}
+
+/* ======== CONTENIDO PRINCIPAL ======== */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;   /* Centra horizontalmente */
+    align-items: flex-start;   /* Lo pone arriba (si quieres centrar verticalmente, usa center) */
+    padding-top: 2px;         /* Separación desde arriba */
+    min-height: 100vh;         /* Ocupa toda la altura */
+}
+
+.card-header.bg-warning {
+    background-color: #2a5298!important; /* Cambia este código por el color que quieras */
+    color: white !important; /* Para el texto */
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #2a5298, #0dfd41);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+h4.titulo-inventario {
+    color: #2a5298; /* Color que prefieras, ejemplo naranja */
+    font-weight: bold;
+}

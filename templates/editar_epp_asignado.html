@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Asignación de EPP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="..//static/css/editar_epp_asignado.css">
+</head>
+<body>
+<div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      
+    </ul>
+</div>
+    <!-- Contenido principal -->
+    <div class="content flex-grow-1">
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Editar Asignación de EPP</h4>
+        </div>
+        <div class="card-body">
+
+            <form action="{{ url_for('editar_epp_asignado', asignacion_id=asignacion.id) }}" method="POST">
+                
+                <!-- Nombre del trabajador (solo lectura) -->
+                <div class="mb-3">
+                    <label class="form-label">Trabajador</label>
+                    <input type="text" class="form-control" value="{{ asignacion.nombre_personal }}" readonly>
+                </div>
+
+                <!-- EPP asignado editable (con nombre, tipo y stock) -->
+                <div class="mb-3">
+                    <label for="epp_id" class="form-label">Elemento de Protección Personal (EPP)</label>
+                    <select class="form-select" id="epp_id" name="epp_id" required>
+                        {% for epp in lista_epp %}
+                            <option value="{{ epp.id }}" {% if epp.id == asignacion.epp_id %}selected{% endif %}>
+                                {{ epp.nombre }} - {{ epp.tipo_proteccion }} (Stock: {{ epp.stock }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Fecha de entrega -->
+                <div class="mb-3">
+                    <label for="fecha_entrega" class="form-label">Fecha de entrega</label>
+                    <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" value="{{ asignacion.fecha_entrega }}">
+                </div>
+
+                <!-- Estado -->
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado" name="estado" required>
+                        <option value="Asignado" {% if asignacion.estado == 'Asignado' %}selected{% endif %}>Asignado</option>
+                        <option value="Devuelto" {% if asignacion.estado == 'Devuelto' %}selected{% endif %}>Devuelto</option>
+                        <option value="Requiere Reposición" {% if asignacion.estado == 'Requiere Reposición' %}selected{% endif %}>Requiere Reposición</option>
+                    </select>
+                </div>
+
+                <!-- Observaciones -->
+                <div class="mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3">{{ asignacion.observaciones }}</textarea>
+                </div>
+
+                <!-- Firmado -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="firmado" name="firmado" value="1" {% if asignacion.firmado %}checked{% endif %}>
+                    <label class="form-check-label" for="firmado">Firmado por el trabajador</label>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between">
+                    <a href="{{ url_for('control_epp') }}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: linear-gradient(to bottom, #2a5298, #0dfd41);
+    color: white;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No se reduce de tamaño */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #504747;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: flex-start; /* Si quieres centrado vertical, usa center */
+    padding: 20px;
+}
+
+.form-container {
+    max-width: 600px; /* Evita que se expanda demasiado */
+    width: 100%;
+}
+
+
+/* ===== Encabezado del formulario ===== */
+.mb-4.text-center h3 {
+    font-weight: bold;
+    background: linear-gradient(to right, #2a5298, #2a5298);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mb-4.text-center p {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* ===== Tarjeta del formulario ===== */
+.card {
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== Inputs y selects ===== */
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 6px rgba(42, 82, 152, 0.3);
+}
+
+/* ===== Etiquetas ===== */
+.form-label {
+    font-weight: 500;
+}
+
+/* ===== Botones ===== */
+.btn-primary {
+    background: linear-gradient(to right, #2a5298, #0dfd41);
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #1f3d73, #0bc238);
+    transform: scale(1.03);
+}
+
+.btn-outline-secondary {
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+

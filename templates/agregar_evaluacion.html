@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Evaluación | SST-AnalyTIC</title>
+    <link rel="stylesheet" href="../static/css/capacitaciones.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar heredada -->
+    <div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      
+    </ul>
+</div>
+
+    <div class="container mt-4">
+        <div class="card shadow-sm p-4">
+            <h2 class="mb-4">Agregar Evaluación de Capacitación</h2>
+
+            <form method="POST" action="/agregar_evaluacion">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Capacitación</label>
+                        <select name="capacitacion_id" class="form-select" required>
+                            <option value="">Seleccione una capacitación...</option>
+                            {% for capacitacion in capacitaciones %}
+                                <option value="{{ capacitacion.id }}">
+                                    {{ capacitacion.fecha.strftime('%d/%m/%Y') }} - {{ capacitacion.empresa_nombre }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Participante</label>
+                        <input type="text" name="participante" class="form-control" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Pre-Test (Puntaje)</label>
+                        <input type="number" name="pre_test" class="form-control" min="0" max="100" step="0.1">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Post-Test (Puntaje)</label>
+                        <input type="number" name="post_test" class="form-control" min="0" max="100" step="0.1" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="/capacitaciones" class="btn btn-secondary me-2">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Guardar Evaluación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

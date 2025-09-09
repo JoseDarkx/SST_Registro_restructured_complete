@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Empresa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registerEmpresa.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      
+    </ul>
+</div>
+    <div class="main-container">
+        <div class="form-wrapper">
+            <h1>Registrar Empresa</h1>
+            <form action="/empresas" method="POST">
+            <fieldset>
+                <legend>Información Básica de la Empresa</legend>
+
+                <label>NIT *</label>
+                <input type="text" name="nit" placeholder="Ej: 900.123.456-7" required>
+
+                <label>Razón Social *</label>
+                <input type="text" name="razon_social" required>
+
+                <label>Nombre Comercial</label>
+                <input type="text" name="nombre_comercial">
+
+                <label>Correo Electrónico *</label>
+                <input type="email" name="correo" required>
+
+                <label>Teléfono</label>
+                <input type="text" name="telefono">
+
+                <label>Dirección *</label>
+                <input type="text" name="direccion" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Representación Legal</legend>
+
+                <label>Representante Legal *</label>
+                <input type="text" name="representante_legal" required>
+
+                <label>Cédula del Representante *</label>
+                <input type="text" name="cedula_representante" required>
+
+                <label>Cargo *</label>
+                <input type="text" name="cargo" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Documentos Requeridos</legend>
+
+                <label>Certificado de Existencia y Representación Legal *</label>
+                <input type="file" name="certificado" accept=".pdf,.jpg,.png" required>
+
+                <label>Logo de la Empresa (Opcional)</label>
+                <input type="file" name="logo" accept=".jpg,.png,.svg">
+            </fieldset>
+
+            <fieldset>
+                <legend>Información Adicional</legend>
+
+                <label>Actividad Económica Principal</label>
+                <input type="text" name="actividad">
+
+                <label>Código CIIU</label>
+                <input type="text" name="codigo_ciiu">
+
+                <label>Observaciones</label>
+                <textarea name="observaciones" rows="3"></textarea>
+            </fieldset>
+
+            <div class="form-buttons">
+                <button type="button" class="cancelar">Cancelar</button>
+                <button type="submit">Registrar Empresa</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte General de EPP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="..//static/css/control_epp.css">
+</head>
+<body >
+    <div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content flex-grow-1">
+<div class="container py-5">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Reporte General de EPP</h4>
+        </div>
+        <div class="card-body">
+
+            <!-- Datos del trabajador -->
+            <div class="mb-4">
+                <h5>Detalles Trabajador:</h5>
+                <p><strong>Trabajador:</strong> {{ trabajador.nombre_completo }}</p>
+                <p><strong>Cargo:</strong> {{ trabajador.cargo }}</p>
+                <p><strong>Estado:</strong> {{ trabajador.estado }}</p>
+            </div>
+
+            <!-- Tabla de entregas -->
+            <h5 class="text-primary">Historial de Entregas</h5>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo EPP</th>
+                            <th>Modelo</th>
+                            <th>Vence</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entrega in entregas %}
+                        <tr>
+                            <td>{{ entrega.fecha_entrega }}</td>
+                            <td>{{ entrega.nombre_epp }}</td>
+                            <td>{{ entrega.modelo or '—' }}</td>
+                            <td>{{ entrega.fecha_vencimiento }}</td>
+                            <td>{{ entrega.responsable or '—' }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No hay entregas registradas.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabla de novedades -->
+            <h5 class="text-primary">Historial de Novedades</h5>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo EPP</th>
+                            <th>Motivo</th>
+                            <th>Entidad</th>
+                            <th>ID/Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for novedad in novedades %}
+                        <tr>
+                            <td>{{ novedad.fecha }}</td>
+                            <td>{{ novedad.tipo_epp }}</td>
+                            <td>{{ novedad.motivo }}</td>
+                            <td>{{ novedad.entidad }}</td>
+                            <td>{{ novedad.estado }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">No hay novedades registradas.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between">
+                <a href="{{ url_for('control_epp') }}" class="btn btn-secondary">Volver</a>
+                <a href="{{ url_for('reporte_general_epp') }}" class="btn btn-success">Reporte General</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

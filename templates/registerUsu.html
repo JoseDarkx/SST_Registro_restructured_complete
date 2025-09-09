@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="..//static/css/registerUsu.css">
+</head>
+<body>
+    <div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      </ul>
+    </div>
+
+
+    <div class="main-content">
+        <div class="form-container">
+            <h1>Registro de Usuario</h1>
+            <form action="/usuarios" method="POST">
+                <label for="nombre_completo">Nombre completo:</label>
+                <input type="text" name="nombre_completo" required>
+
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" name="correo" required>
+
+                <label for="usuario">Usuario:</label>
+                <input type="text" name="usuario" required>
+
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" name="contraseña" required>
+
+                <label for="estado">Estado:</label>
+                <select name="estado" required>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+
+                <label for="rol_id">Rol:</label>
+                <select name="rol_id" required>
+                    <option value="">Seleccione un rol</option>
+                    {% for rol in roles %}
+                        <option value="{{ rol.id }}">{{ rol.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

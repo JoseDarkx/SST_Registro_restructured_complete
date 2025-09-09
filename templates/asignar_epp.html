@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignar EPP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="..//static/css/asignar_epp.css">
+</head>
+<body >
+<div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      
+    </ul>
+</div>
+    <!-- Contenido principal -->
+    <div class="content flex-grow-1">
+    <div class="form-wrapper">
+        <div class="container p-4 border rounded bg-white">
+            <h4 class="mb-4">Registro de Entrega de EPP</h4>
+
+    <form method="POST">
+        <!-- Detalles del Trabajador -->
+        <fieldset class="border p-3 mb-3">
+            <legend class="float-none w-auto px-2">Detalles del Trabajador</legend>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="personal_id" class="form-label">Trabajador</label>
+                    <select name="personal_id" id="personal_id" class="form-select" required>
+                        <option value="">Seleccione trabajador</option>
+                        {% for p in personal %}
+                            <option value="{{ p.id }}">
+                                {{ p.nombre_completo }} - {{ p.cargo }} ({{ p.empresa }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="epp_id" class="form-label">Tipo de EPP</label>
+                    <select name="epp_id" id="epp_id" class="form-select" required>
+                        <option value="">Seleccione tipo de EPP</option>
+                        {% for e in epps %}
+                            <option value="{{ e.id }}">
+                                {{ e.nombre }} - {{ e.tipo_proteccion }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Valoración del Riesgo -->
+        <fieldset class="border p-3 mb-3">
+            <legend class="float-none w-auto px-2">Datos de Entrega</legend>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+                    <input type="date" class="form-control" name="fecha_entrega" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="estado" class="form-label">Estado</label>
+                    <select name="estado" class="form-select" required>
+                        <option value="Asignado">Asignado</option>
+                        <option value="Devuelto">Devuelto</option>
+                        <option value="Requiere Reposición">Requiere Reposición</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="observaciones" class="form-label">Observaciones</label>
+                    <input type="text" class="form-control" name="observaciones">
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Firma -->
+        <fieldset class="border p-3 mb-3">
+            <legend class="float-none w-auto px-2">Confirmación</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="firmado" id="firmado">
+                <label class="form-check-label" for="firmado">
+                    Confirmo que el trabajador ha firmado la entrega del EPP.
+                </label>
+            </div>
+        </fieldset>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between">
+            <a href="{{ url_for('control_epp') }}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-success">Asignar EPP</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

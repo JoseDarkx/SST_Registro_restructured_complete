@@ -1,0 +1,208 @@
+/* Quitar la barra/outline azul en enlaces del sidebar */
+.sidebar a:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background: #f9fafb;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(to bottom, #2a5298, #0dfd41);
+    color: white;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No se reduce de tamaño */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #504747;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== Main content ===== */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ====== Tarjetas ====== */
+.card{
+  border: none;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-header{
+  background: #2a5298 !important;
+  color: #fff !important;
+  border-bottom: none;
+  padding: 14px 18px;
+}
+
+.card-header h5{
+  color: #fff;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-body{
+  padding: 18px;
+}
+
+/* ====== Formulario ====== */
+.form-label{
+  font-weight: 700;
+  color: #111827;
+}
+
+.form-control, .form-select{
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+}
+
+.form-control:focus, .form-select:focus{
+  box-shadow: 0 0 0 .25rem rgba(13,110,253,.15);
+  border-color: #cfe0ff;
+}
+
+/* Botones */
+.btn{
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.btn-primary{
+  background:#2a5298;
+  border: none;
+}
+
+.btn-primary:hover{
+  filter: brightness(.95);
+}
+
+.btn-secondary{
+  background: #111827;
+  border: none;
+}
+
+.btn-secondary:hover{
+  filter: brightness(1.1);
+}
+
+.btn-success{
+  border: none;
+}
+
+/* ====== Tabla ====== */
+.table thead th{
+  background: #f3f4f6;
+  color: #111827;
+  font-weight: 800;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-hover tbody tr:hover{
+  background: #f8fafc;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+  --bs-table-accent-bg: #fafbff;
+}
+
+.table .btn-group .btn{
+  padding: 6px 10px;
+}
+
+/* ====== Responsivo ====== */
+@media (max-width: 992px){
+  .sidebar{
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px){
+  body {
+    flex-direction: column;
+  }
+  .sidebar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 14px 12px;
+  }
+  .sidebar ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+  }
+  .main-content{
+    padding: 12px;
+  }
+}

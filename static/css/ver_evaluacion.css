@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background: #f9fafb;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(to bottom, #2a5298, #0dfd41);
+    color: white;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No se reduce de tamaño */
+}
+
+/* Scrollbar personalizado en la sidebar */
+.sidebar {
+    scrollbar-width: thin; /* Firefox: barra fina */
+    scrollbar-color: rgba(255,255,255,0.4) transparent; /* color de la barra y fondo */
+}
+
+/* Chrome, Edge y Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px; /* ancho de la barra */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.4); /* color gris translúcido */
+    border-radius: 3px; /* esquinas redondeadas */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent; /* fondo invisible */
+}
+
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #504747;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* ====== TARJETA DE DETALLE ====== */
+.card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.card-body strong {
+    color: #333;
+}
+
+.bg-primary {
+    background-color: #2a5298 !important; /* reemplaza el azul por el color que quieras */
+}
+
+
+/* ====== BOTONES ====== */
+.btn {
+    border-radius: 5px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-outline-success {
+    border-radius: 5px;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Evaluación Médica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="..//static/css/agregar_evaluaciones.css">
+</head>
+<body>
+    <div class="sidebar">
+    <h2>SST-AnalyTIC</h2>
+    <ul>
+        <li><a href="/dashboard" class="menu-link">Inicio</a></li>
+
+        <li class="section-title">GESTIÓN PRINCIPAL</li>
+        <li><a href="/capacitaciones" class="menu-link">Capacitaciones</a></li>
+        <li><a href="/evaluaciones_medicas" class="menu-link">Evaluaciones Médicas</a></li>
+        <li><a href="/matriz_iper" class="menu-link">Matriz IPER</a></li>
+        <li><a href="//control_epp" class="menu-link">Gestión EPP</a></li>
+        <li><a href="/normas_legales" class="menu-link">Normas Legales</a></li>
+        <li><a href="/firma_digital" class="menu-link">Firma Digital</a></li>
+        <li><a href="/solicitudes_contrasena" class="menu-link">Solicitudes Contraseña</a></li>
+
+        <li class="section-title">ADMINISTRACIÓN</li>
+        <li><a href="/empresas" class="menu-link">Empresas</a></li>
+        <li><a href="/usuarios" class="menu-link">Usuarios</a></li>
+        <li><a href="/visualizacion_global" class="menu-link">Visualización Global</a></li>
+        <li><a href="/formatos_globales" class="menu-link">Formatos Globales</a></li>
+        <li><a href="/documentacion" class="menu-link">Documentación</a></li>
+
+        <li class="section-title">GESTIÓN DE PERSONAL</li>
+        <li><a href="/visualizacion_filtros" class="menu-link">Visualización y Filtros</a></li>
+        <li><a href="/planes_accion" class="menu-link">Planes de Acción</a></li>
+        <li><a href="/incidentes_accidentes" class="menu-link">Incidentes y Accidentes</a></li>
+        <li><a href="/historial_cambios" class="menu-link">Historial de Cambios</a></li>
+      
+    </ul>
+</div>
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="mb-4 text-center">
+                    <h3>
+                        <i class="bi bi-clipboard-plus me-2"></i>
+                        Agregar Evaluación Médica
+                    </h3>
+                    <p class="text-muted">Complete el formulario para registrar una nueva evaluación médica.</p>
+                </div>
+
+                <form method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm bg-white">
+                    <!-- Selección de Personal -->
+                    <div class="mb-3">
+                        <label for="personal_id" class="form-label">
+                            <i class="bi bi-person-badge"></i> Personal
+                        </label>
+                        <select name="personal_id" id="personal_id" class="form-select" required>
+                            <option value="">Seleccione una persona</option>
+                            {% for persona in personal %}
+                                <option value="{{ persona.id }}">
+                                    {{ persona.documento_identidad }} - {{ persona.nombre_completo }} ({{ persona.empresa }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Fecha y Tipo -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="fecha" class="form-label">
+                                <i class="bi bi-calendar-date"></i> Fecha de Evaluación
+                            </label>
+                            <input type="date" name="fecha" id="fecha" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tipo_evaluacion" class="form-label">
+                                <i class="bi bi-file-earmark-medical"></i> Tipo de Evaluación
+                            </label>
+                            <select name="tipo_evaluacion" id="tipo_evaluacion" class="form-select" required>
+                                <option value="">Seleccione tipo</option>
+                                <option value="Ingreso">Ingreso</option>
+                                <option value="Periódico">Periódico</option>
+                                <option value="Egreso">Egreso</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Médico examinador -->
+                    <div class="mb-3">
+                        <label for="medico_examinador" class="form-label">
+                            <i class="bi bi-person-vcard"></i> Médico Examinador
+                        </label>
+                        <input type="text" name="medico_examinador" id="medico_examinador" class="form-control" required placeholder="Nombre completo">
+                    </div>
+
+                    <!-- Restricciones -->
+                    <div class="mb-3">
+                        <label for="restricciones" class="form-label">
+                            <i class="bi bi-exclamation-triangle"></i> Restricciones
+                            <span class="text-muted" data-bs-toggle="tooltip" title="Restricciones médicas del trabajador">(?)</span>
+                        </label>
+                        <textarea name="restricciones" id="restricciones" rows="2" class="form-control" placeholder="Describa las restricciones si existen"></textarea>
+                    </div>
+
+                    <!-- Observaciones -->
+                    <div class="mb-3">
+                        <label for="observaciones" class="form-label">
+                            <i class="bi bi-eye"></i> Observaciones
+                        </label>
+                        <textarea name="observaciones" id="observaciones" rows="2" class="form-control" placeholder="Observaciones relevantes"></textarea>
+                    </div>
+
+                    <!-- Recomendaciones -->
+                    <div class="mb-3">
+                        <label for="recomendaciones" class="form-label">
+                            <i class="bi bi-lightbulb"></i> Recomendaciones
+                        </label>
+                        <textarea name="recomendaciones" id="recomendaciones" rows="2" class="form-control" placeholder="Recomendaciones médicas"></textarea>
+                    </div>
+
+                    <!-- Subir archivo -->
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">
+                            <i class="bi bi-upload"></i> Subir archivo (opcional)
+                        </label>
+                        <input type="file" name="archivo" id="archivo" class="form-control" accept=".pdf,.doc,.docx,.jpg,.png">
+                        <div class="form-text">Formatos permitidos: PDF, Word, JPG, PNG.</div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('evaluaciones_medicas') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Guardar Evaluación
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Inicializar tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+</body>
+</html>

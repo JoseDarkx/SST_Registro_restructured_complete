@@ -1,0 +1,148 @@
+/* static/css/dashboard.css */
+
+/* Estilo general de fondo y tipografía */
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: linear-gradient(to bottom, #2a5298, #0dfd41);
+    color: white;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No se reduce de tamaño */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #504747;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: flex-start; /* Si quieres centrado vertical, usa center */
+    padding: 20px;
+}
+
+.form-container {
+    max-width: 600px; /* Evita que se expanda demasiado */
+    width: 100%;
+}
+/* Tarjetas del dashboard */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h5 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.card.bg-primary {
+    background-color: #0077b6;
+}
+
+.card.bg-success {
+    background-color: #40916c;
+}
+
+.card.bg-warning {
+    background-color: #f9c74f;
+    color: #000;
+}
+
+/* Tabla de matriz IPER */
+table {
+    font-size: 14px;
+}
+
+.table thead {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+.badge.bg-danger {
+    background-color: #d00000;
+}
+
+.badge.bg-warning {
+    background-color: #ffba08;
+    color: #000;
+}
+
+.badge.bg-success {
+    background-color: #80ed99;
+    color: #000;
+}
+
+/* Barra superior */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Botón de logout */
+header img {
+    cursor: pointer;
+    margin-left: 15px;
+}
